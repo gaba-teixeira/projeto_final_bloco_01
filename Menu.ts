@@ -1,9 +1,29 @@
+import { Mochilao } from "./src/model/Mochilao";
+import { RetiroEspiritual } from "./src/model/RetiroEspiritual";
+import { Viagens } from "./src/model/Viagens";
 import { colors } from "./src/util/Cores";
 import readlinesync = require("readline-sync");
 
 export function main() {
-  let option, id, preco, tipo: number;
+  let option, id, preco, duracao, tipo: number;
   let destino: string;
+
+  
+//Teste
+  let v1 = new Mochilao(1, 'Italia', "2 semanas", 85, 1, 'Abadaba Hostel')
+  let v2 = new RetiroEspiritual(
+    1,
+    "Espanha",
+    "2 semanas",
+    85,
+    2,
+    "Abadaba Centro"
+  );
+
+
+  v1.visualizar()
+  v2.visualizar()
+
 
   while (true) {
     console.log(
