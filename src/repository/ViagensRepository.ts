@@ -8,3 +8,4 @@ export interface ViagensRepository {
   deletar(id: number): void;
   procurarPorDestino(destino: string): void;
 }
+    

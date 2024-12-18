@@ -76,9 +76,10 @@ export abstract class Viagens {
     }
     console.log(
       colors.bg.white,
-      colors.fg.yellowstrong,"***********************************************"
+      colors.fg.yellowstrong,
+        "****************************************************"
     );
-    console.log("Dados da Viagem ");
+    console.log("            Dados da Viagem                      ");
     console.log("***********************************************\n");
     console.log(`Destino: ${this._destino}`);
     console.log(`ID da Viagem: ${this._id}`);

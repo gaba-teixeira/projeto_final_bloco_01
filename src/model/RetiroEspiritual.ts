@@ -28,7 +28,7 @@ export class RetiroEspiritual extends Viagens {
     super.visualizar();
     console.log(
       colors.bg.white,
-      colors.fg.yellowstrong,`Nome do Centro Espiritual: ${this._centroEspiritual}`,
+      colors.fg.yellowstrong,`Nome do Centro Espiritual: ${this._centroEspiritual}\n`,
       colors.reset
     );
   }

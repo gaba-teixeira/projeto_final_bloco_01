@@ -28,7 +28,7 @@ export class Mochilao extends Viagens {
     super.visualizar();
     console.log(
       colors.bg.white,
-      colors.fg.yellowstrong,`Nome do Hostel: ${this._hostel}`,
+      colors.fg.yellowstrong,`Nome do Hostel: ${this._hostel}\n`,
       colors.reset
     );
   }
