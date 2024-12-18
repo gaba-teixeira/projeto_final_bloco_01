@@ -1,9 +1,11 @@
 import { Viagens } from "../model/Viagens";
+import { Viajantes } from "../model/Viajantes";
 import { ViagensRepository } from "../repository/ViagensRepository";
 import { colors } from "../util/Cores";
 
 export class ViagensController implements ViagensRepository {
   private listaViagens = new Array<Viagens>();
+  private listaViajantes = new Array<Viajantes>();
 
   public id: number = 0;
 
@@ -68,6 +70,46 @@ export class ViagensController implements ViagensRepository {
       console.log(
         colors.fg.red,
         `Viagem: ${destino} não encontrado!`,
+        colors.reset
+      );
+    }
+  }
+
+  listarTodosViajantes(): void {
+    this.listaViajantes.forEach((viajantes) => viajantes.visualizar());
+  }
+
+  comprar(
+    id: number,
+    nome: string,
+    idade: number,
+    email: string,
+    telefone: string
+  ): void {
+    let buscaViagem = this.buscarnoArray(id);
+    if (buscaViagem !== null) {
+      let novoViajante = new Viajantes(
+        buscaViagem.id,
+        buscaViagem.destino,
+        buscaViagem.duracao,
+        buscaViagem.preco,
+        buscaViagem.tipo,
+        nome,
+        email,
+        telefone,
+        idade
+      );
+
+      this.listaViajantes.push(novoViajante);
+      novoViajante.visualizar();
+      console.log(
+        colors.fg.red,
+        `PARABÉNS! VOCÊ VAI VIAJAR PARA ${buscaViagem.destino.toUpperCase()} COM A LáFora!!! \n INFORMAÇÕES DE PAGAMENTO FORAM ENVIADAS VIA EMAIL - AGUARDE MAIS INFORMAÇÕES!`
+      );
+    } else {
+      console.log(
+        colors.fg.red,
+        `Viagem com ID ${id} não encontrada.`,
         colors.reset
       );
     }

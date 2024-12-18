@@ -2,12 +2,13 @@ import { ViagensController } from "./src/controller/ViagensController";
 import { Mochilao } from "./src/model/Mochilao";
 import { RetiroEspiritual } from "./src/model/RetiroEspiritual";
 import { Viagens } from "./src/model/Viagens";
+import { Viajantes } from "./src/model/Viajantes";
 import { colors } from "./src/util/Cores";
 import readlinesync = require("readline-sync");
 
 export function main() {
-  let option, id, preco, duracao, tipo: number;
-  let destino: string;
+  let option, id, preco, duracao, tipo, idade: number;
+  let destino, nome, email, telefone: string;
   const tipoViagem = ["Mochilao", "Retiro Espiritual"];
 
   let viagem = new ViagensController();
@@ -65,6 +66,8 @@ export function main() {
     console.log("           4 - Atualizar informações da Viagem    ");
     console.log("           5 - Deletar Viagem               ");
     console.log("           6 - Consultar Viagem por destino          ");
+    console.log("           7 - Comprar Viagem                   ");
+    console.log("           8 - Listar Viajantes que compraram viagens com a gente!      ");
     console.log("           0 - Sair do programa            ");
 
     console.log("\n Entre com a opção desejada: ", colors.reset);
@@ -240,6 +243,45 @@ export function main() {
 
         break;
 
+      case 7:
+        console.log(
+          colors.fg.whitestrong,
+
+          "\nComprar Viagem\n",
+          colors.reset
+        );
+
+        id = readlinesync.questionInt(
+          "Digite o ID da viagem que deseja comprar: "
+        );
+        let compraViagem = viagem.buscarnoArray(id);
+
+        if (compraViagem !== null) {
+          nome = readlinesync.question("Digite o seu nome completo: ");
+          email = readlinesync.questionEMail("Digite o seu email: ");
+          idade = readlinesync.questionInt("Digite sua idade: ");
+          telefone = readlinesync.question("Digite o seu telefone: ");
+
+          viagem.comprar(id, nome, idade, email, telefone);
+        } else {
+          console.log(colors.fg.red, "Viagem não encontrada!", colors.reset);
+        }
+        keyPress();
+        break;
+        case 8:
+            console.log(
+              colors.fg.whitestrong,
+
+              "\nListar todas os viajantes que compraram viagens com a gente: \n",
+              colors.reset
+            );
+            
+            viagem.listarTodosViajantes();
+
+            keyPress();
+
+        break;
+
       default:
         console.log(
           colors.fg.whitestrong,
@@ -271,6 +313,3 @@ function sobre() {
 }
 
 main();
-function gerarId(): number {
-  throw new Error("Function not implemented.");
-}
